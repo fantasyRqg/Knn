@@ -1,7 +1,7 @@
-package fantasy.tz.knn;
+package fantasy.wmj.knn;
 
 /**
- * Created by tz on 28/11/2016.
+ * Created by wmj on 28/11/2016.
  */
 abstract public class DistanceMatrix {
     private IrisDataSet mIrisDataSet;

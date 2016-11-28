@@ -1,9 +1,9 @@
-package fantasy.tz.knn;
+package fantasy.wmj.knn;
 
 import java.util.*;
 
 /**
- * Created by tz on 28/11/2016.
+ * Created by wmj on 28/11/2016.
  */
 public class Knn {
 

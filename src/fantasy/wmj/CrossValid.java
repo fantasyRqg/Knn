@@ -1,14 +1,14 @@
-package fantasy.tz;
+package fantasy.wmj;
 
-import fantasy.tz.knn.IrisDataSet;
-import fantasy.tz.knn.Knn;
+import fantasy.wmj.knn.IrisDataSet;
+import fantasy.wmj.knn.Knn;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by tz on 28/11/2016.
+ * Created by wmj on 28/11/2016.
  * <p>
  * 交叉验证
  */

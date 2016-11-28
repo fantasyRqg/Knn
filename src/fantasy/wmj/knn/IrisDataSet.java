@@ -1,4 +1,4 @@
-package fantasy.tz.knn;
+package fantasy.wmj.knn;
 
 
 import java.io.BufferedReader;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by tz on 28/11/2016.
+ * Created by wmj on 28/11/2016.
  */
 public class IrisDataSet {
     private IrisSample[] mAllData;

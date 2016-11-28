@@ -1,10 +1,10 @@
-package fantasy.tz.utils;
+package fantasy.wmj.utils;
 
 import java.util.Random;
 import java.util.RandomAccess;
 
 /**
- * Created by tz on 28/11/2016.
+ * Created by wmj on 28/11/2016.
  */
 
 public class ArrayUtils {

@@ -1,4 +1,4 @@
-package fantasy.tz;
+package fantasy.wmj;
 
 import java.io.BufferedReader;
 import java.io.File;

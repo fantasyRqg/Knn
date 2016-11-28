@@ -1,9 +1,9 @@
-package fantasy.tz;
+package fantasy.wmj;
 
-import fantasy.tz.knn.DistanceMatrix;
-import fantasy.tz.knn.IrisDataSet;
-import fantasy.tz.knn.ManhattanDistance;
-import fantasy.tz.utils.ArrayUtils;
+import fantasy.wmj.knn.DistanceMatrix;
+import fantasy.wmj.knn.IrisDataSet;
+import fantasy.wmj.knn.ManhattanDistance;
+import fantasy.wmj.utils.ArrayUtils;
 
 import java.io.IOException;
 import java.util.List;
