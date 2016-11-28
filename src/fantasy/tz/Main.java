@@ -1,9 +1,9 @@
-package fantasy.rqg;
+package fantasy.tz;
 
-import fantasy.rqg.knn.DistanceMatrix;
-import fantasy.rqg.knn.IrisDataSet;
-import fantasy.rqg.knn.ManhattanDistance;
-import fantasy.rqg.utils.ArrayUtils;
+import fantasy.tz.knn.DistanceMatrix;
+import fantasy.tz.knn.IrisDataSet;
+import fantasy.tz.knn.ManhattanDistance;
+import fantasy.tz.utils.ArrayUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,12 +20,15 @@ public class Main {
         int[] dataIds = new int[irisDataSet.getAllData().length];
 
 
+        //产生数据id数组
         for (int i = 0; i < dataIds.length; i++) {
             dataIds[i] = i;
         }
 
 
-        for (int k = 2; k < 15; k++) {
+        //准备通过 交叉验证 检测合适的k， 当前 从2开始最大到30
+        for (int k = 2; k < 30; k++) {
+            //shuffle array
             ArrayUtils.shuffle(dataIds, new Random(System.currentTimeMillis()));
 
             CrossValid crossValid = new CrossValid(5, dataIds, k, irisDataSet, matrix.getMatrix());
@@ -33,7 +36,20 @@ public class Main {
             List<Float> resutls = crossValid.crossValid();
 
 
+            float avg = 0f;
+
+
+            for (int i = 0; i < resutls.size(); i++) {
+                avg += resutls.get(i);
+            }
+
+            avg = avg / resutls.size();
+
             StringBuilder sb = new StringBuilder();
+            sb.append("K = ")
+                    .append(k)
+                    .append(" avg accuracy = " + avg)
+                    .append(" , accuracy = ");
             for (int i = 0; i < resutls.size(); i++) {
                 sb.append(resutls.get(i)).append(",");
             }

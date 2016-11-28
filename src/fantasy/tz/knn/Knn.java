@@ -1,10 +1,9 @@
-package fantasy.rqg.knn;
+package fantasy.tz.knn;
 
-import javax.sound.midi.Soundbank;
 import java.util.*;
 
 /**
- * Created by rqg on 28/11/2016.
+ * Created by tz on 28/11/2016.
  */
 public class Knn {
 

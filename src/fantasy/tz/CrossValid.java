@@ -1,18 +1,14 @@
-package fantasy.rqg;
+package fantasy.tz;
 
-import fantasy.rqg.knn.IrisDataSet;
-import fantasy.rqg.knn.IrisSample;
-import fantasy.rqg.knn.Knn;
-import fantasy.rqg.utils.ArrayUtils;
-import sun.jvm.hotspot.utilities.memo.MemoizedFloat;
+import fantasy.tz.knn.IrisDataSet;
+import fantasy.tz.knn.Knn;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 /**
- * Created by rqg on 28/11/2016.
+ * Created by tz on 28/11/2016.
  * <p>
  * 交叉验证
  */

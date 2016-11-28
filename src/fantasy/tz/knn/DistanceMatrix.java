@@ -1,11 +1,7 @@
-package fantasy.rqg.knn;
-
-import sun.util.resources.cldr.id.CalendarData_id_ID;
-
-import java.util.FormatFlagsConversionMismatchException;
+package fantasy.tz.knn;
 
 /**
- * Created by rqg on 28/11/2016.
+ * Created by tz on 28/11/2016.
  */
 abstract public class DistanceMatrix {
     private IrisDataSet mIrisDataSet;

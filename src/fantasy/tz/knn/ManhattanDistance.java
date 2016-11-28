@@ -1,7 +1,7 @@
-package fantasy.rqg.knn;
+package fantasy.tz.knn;
 
 /**
- * Created by rqg on 28/11/2016.
+ * Created by tz on 28/11/2016.
  */
 public class ManhattanDistance extends DistanceMatrix {
     public ManhattanDistance(IrisDataSet irisDataSet) {

@@ -1,7 +1,7 @@
-package fantasy.rqg.utils;
+package fantasy.tz.utils;
 
 /**
- * Created by rqg on 28/11/2016.
+ * Created by tz on 28/11/2016.
  */
 public class TextUtils {
     /**

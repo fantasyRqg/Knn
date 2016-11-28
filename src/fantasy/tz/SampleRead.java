@@ -1,4 +1,4 @@
-package fantasy.rqg;
+package fantasy.tz;
 
 import java.io.BufferedReader;
 import java.io.File;

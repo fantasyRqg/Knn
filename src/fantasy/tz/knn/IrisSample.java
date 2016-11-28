@@ -1,9 +1,9 @@
-package fantasy.rqg.knn;
+package fantasy.tz.knn;
 
-import fantasy.rqg.utils.TextUtils;
+import fantasy.tz.utils.TextUtils;
 
 /**
- * Created by rqg on 28/11/2016.
+ * Created by tz on 28/11/2016.
  * <p>
  * 7. Attribute Information:
  * 1. sepal length in cm
