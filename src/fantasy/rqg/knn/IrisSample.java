@@ -1,7 +1,6 @@
 package fantasy.rqg.knn;
 
-import com.sun.org.apache.regexp.internal.RE;
-import fantasy.rqg.TextUtils;
+import fantasy.rqg.utils.TextUtils;
 
 /**
  * Created by rqg on 28/11/2016.
@@ -19,9 +18,14 @@ import fantasy.rqg.TextUtils;
 public class IrisSample {
 
     /**
+     * position in {@link IrisDataSet#getAllData()}
+     */
+    public int index;
+
+    /**
      * * 1. sepal length in cm
      */
-    public float sepAlLength;
+    public float sepalLength;
 
     /**
      * * 2. sepal width in cm

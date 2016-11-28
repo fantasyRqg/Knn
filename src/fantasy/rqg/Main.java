@@ -1,5 +1,7 @@
 package fantasy.rqg;
 
+import fantasy.rqg.utils.ArrayUtils;
+
 import java.util.Random;
 
 public class Main {

@@ -1,4 +1,4 @@
-package fantasy.rqg;
+package fantasy.rqg.utils;
 
 /**
  * Created by rqg on 28/11/2016.

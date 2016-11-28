@@ -1,4 +1,4 @@
-package fantasy.rqg;
+package fantasy.rqg.utils;
 
 import java.util.Random;
 import java.util.RandomAccess;
