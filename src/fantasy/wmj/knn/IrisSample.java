@@ -3,7 +3,7 @@ package fantasy.wmj.knn;
 import fantasy.wmj.utils.TextUtils;
 
 /**
- * Created by wmj on 28/11/2016.
+ * Created by wuminjie on 28/11/2016.
  * <p>
  * 7. Attribute Information:
  * 1. sepal length in cm

@@ -8,9 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by wmj on 28/11/2016.
+ * Created by wuminjie on 28/11/2016.
  * <p>
- * 交叉验证
+ * 负责交叉验证交叉验证
  */
 public class CrossValid {
     /**
@@ -34,6 +34,13 @@ public class CrossValid {
 
     private float[][] mDistanceMatrix;
 
+    /**
+     * @param fold           交叉验证次数
+     * @param dataIds        数据集ID
+     * @param k              K of KNN
+     * @param irisDataSet    数据集合
+     * @param distanceMatrix 距离矩阵
+     */
     public CrossValid(int fold, int[] dataIds, int k, IrisDataSet irisDataSet, float[][] distanceMatrix) {
         mFold = fold;
         mDataIds = dataIds;

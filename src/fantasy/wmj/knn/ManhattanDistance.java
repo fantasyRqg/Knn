@@ -1,7 +1,7 @@
 package fantasy.wmj.knn;
 
 /**
- * Created by wmj on 28/11/2016.
+ * Created by wuminjie on 28/11/2016.
  */
 public class ManhattanDistance extends DistanceMatrix {
     public ManhattanDistance(IrisDataSet irisDataSet) {

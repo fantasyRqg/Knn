@@ -1,7 +1,7 @@
 package fantasy.wmj.utils;
 
 /**
- * Created by wmj on 28/11/2016.
+ * Created by wuminjie on 28/11/2016.
  */
 public class TextUtils {
     /**

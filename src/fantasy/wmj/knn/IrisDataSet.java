@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by wmj on 28/11/2016.
+ * Created by wuminjie on 28/11/2016.
  */
 public class IrisDataSet {
     private IrisSample[] mAllData;
@@ -40,6 +40,7 @@ public class IrisDataSet {
                 IrisSample sample = parseIrisSample(line);
                 sampleList.add(sample);
             } catch (Exception e) {
+                //解析出错，意味着缺值或者错误的值，过滤掉
                 System.out.println("error line = " + line);
                 e.printStackTrace();
             }
