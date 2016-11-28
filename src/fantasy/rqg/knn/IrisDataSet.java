@@ -32,10 +32,15 @@ public class IrisDataSet {
 
         String line = null;
         while ((line = reader.readLine()) != null) {
+            line = line.trim();
+            if (line.length() == 0)
+                continue;
+
             try {
                 IrisSample sample = parseIrisSample(line);
                 sampleList.add(sample);
             } catch (Exception e) {
+                System.out.println("error line = " + line);
                 e.printStackTrace();
             }
         }
@@ -80,5 +85,9 @@ public class IrisDataSet {
 
     public IrisSample[] getAllData() {
         return mAllData;
+    }
+
+    public IrisSample getSample(int i) {
+        return mAllData[i];
     }
 }

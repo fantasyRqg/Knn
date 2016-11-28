@@ -44,4 +44,26 @@ public class ArrayUtils {
         arr[i] = arr[j];
         arr[j] = tmp;
     }
+
+
+    /**
+     * 随即重排列数组
+     *
+     * @param array 重拍数组
+     * @param rnd   随机变量
+     */
+    public static void shuffle(int[] array, Random rnd) {
+        // Shuffle array
+        for (int i = array.length; i > 1; i--)
+            swap(array, i - 1, rnd.nextInt(i));
+    }
+
+    /**
+     * Swaps the two specified elements in the specified array.
+     */
+    private static void swap(int[] arr, int i, int j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
 }

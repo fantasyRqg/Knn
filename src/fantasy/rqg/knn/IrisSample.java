@@ -48,9 +48,6 @@ public class IrisSample {
      */
     public int clazz;
 
-    public int preclazz;
-
-
     public void setClazz(int i) {
         clazz = clazz;
     }
@@ -62,14 +59,14 @@ public class IrisSample {
      * -- Iris Virginica 2
      */
     public void setClazz(String clazzStr) {
-        if (TextUtils.equals(clazzStr, "Iris Setosa")) {
+        if (TextUtils.equals(clazzStr, "Iris-setosa")) {
             clazz = 0;
-        } else if (TextUtils.equals(clazzStr, "Iris Versicolour")) {
+        } else if (TextUtils.equals(clazzStr, "Iris-versicolor")) {
             clazz = 1;
-        } else if (TextUtils.equals(clazzStr, "Iris Virginica")) {
+        } else if (TextUtils.equals(clazzStr, "Iris-virginica")) {
             clazz = 2;
         } else {
-            throw new RuntimeException("Invalid class type");
+            throw new RuntimeException("Invalid class type = " + clazzStr);
         }
     }
 
