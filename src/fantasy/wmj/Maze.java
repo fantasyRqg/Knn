@@ -1,6 +1,7 @@
 package fantasy.wmj;
 
-import sun.misc.resources.Messages_zh_CN;
+import fantasy.wmj.knn.DistanceMatrix;
+import fantasy.wmj.utils.ArrayUtils;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -8,6 +9,7 @@ import java.util.Random;
 /**
  * Created by rqg on 29/11/2016.
  */
+
 public class Maze {
 
 
@@ -22,12 +24,12 @@ public class Maze {
 
 
     public static final int LEFT = 0;
-    public static final int RIGHT = 1;
-    public static final int UP = 2;
+    public static final int UP = 1;
+    public static final int RIGHT = 2;
     public static final int DOWN = 3;
 
 
-    public static Random random = new Random(System.currentTimeMillis());
+    public static Random mRandom = new Random(System.currentTimeMillis());
 
     /**
      * 产生迷宫
@@ -53,8 +55,17 @@ public class Maze {
             maze[i][n - 1] = WALL;
         }
 
-        explore(maze, 1, 2);
-        explore(maze, 2, 1);
+        if (mRandom.nextBoolean()) {
+            explore(maze, 1, 2);
+
+            if (couldExplore(maze, 1, 1, RIGHT))
+                explore(maze, 2, 1);
+
+        } else {
+            explore(maze, 2, 1);
+            if (couldExplore(maze, 1, 1, DOWN))
+                explore(maze, 1, 2);
+        }
 
         return maze;
     }
@@ -79,35 +90,56 @@ public class Maze {
 
         map[x][y] = EMPTY;
 
-        int d = random.nextInt(4);
+        int[] order = new int[]{RIGHT, LEFT, UP, DOWN};
 
+        shuffle(order, mRandom);
 
-        switch (d) {
-            case RIGHT:
-                break;
-            case LEFT:
-                break;
-            case UP:
-                break;
-            case DOWN:
-                break;
+        for (int d : order) {
+            switch (d) {
+                case RIGHT:
+                    if (couldExplore(map, x, y, RIGHT)) {
+                        explore(map, x + 1, y);
+                    }
+                    break;
+                case LEFT:
+                    if (couldExplore(map, x, y, LEFT)) {
+                        explore(map, x - 1, y);
+                    }
+                    break;
+                case UP:
+                    if (couldExplore(map, x, y, UP)) {
+                        explore(map, x, y - 1);
+                    }
+                    break;
+                case DOWN:
+                    if (couldExplore(map, x, y, DOWN)) {
+                        explore(map, x, y + 1);
+                    }
+                    break;
+            }
         }
 
-        if (couldExplore(map, x, y, RIGHT)) {
-            explore(map, x + 1, y);
-        }
+    }
 
-        if (couldExplore(map, x, y, LEFT)) {
-            explore(map, x - 1, y);
-        }
+    /**
+     * 随即重排列数组
+     *
+     * @param array 重拍数组
+     * @param rnd   随机变量
+     */
+    public static void shuffle(int[] array, Random rnd) {
+        // Shuffle array
+        for (int i = array.length; i > 1; i--)
+            swap(array, i - 1, rnd.nextInt(i));
+    }
 
-        if (couldExplore(map, x, y, RIGHT)) {
-            explore(map, x + 1, y);
-        }
-
-        if (couldExplore(map, x, y, RIGHT)) {
-            explore(map, x + 1, y);
-        }
+    /**
+     * Swaps the two specified elements in the specified array.
+     */
+    private static void swap(int[] arr, int i, int j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
     }
 
     /**
@@ -125,7 +157,10 @@ public class Maze {
         next1 = peek(map, x, y, direction, 1);
         next2 = peek(map, x, y, direction, 2);
 
-        return next1 == NO_TOUCH && next2 != NULL && next2 != EMPTY;
+        char s1 = peek(map, x, y, (direction + 1) % 4, 1);
+        char s2 = peek(map, x, y, (direction + 3) % 4, 1);
+
+        return next1 == NO_TOUCH && next2 != NULL && next2 != EMPTY && s1 != EMPTY && s2 != EMPTY;
     }
 
 
@@ -159,7 +194,7 @@ public class Maze {
 
         }
 
-        if (map[x].length > y && y > 0 && map.length > x && x > 0) {
+        if (map.length > x && x > 0 && map[x].length > y && y > 0) {
             p = map[x][y];
         }
 
