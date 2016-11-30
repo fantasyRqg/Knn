@@ -1,7 +1,5 @@
 package fantasy.wmj;
 
-import fantasy.wmj.knn.DistanceMatrix;
-import fantasy.wmj.utils.ArrayUtils;
 
 import java.util.Arrays;
 import java.util.Random;
