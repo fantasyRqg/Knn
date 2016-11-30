@@ -44,7 +44,6 @@ public class Maze {
         for (char[] raw : maze) {
             Arrays.fill(raw, NO_TOUCH);
         }
-        maze[1][1] = START;
 
 
         //wall
@@ -55,19 +54,32 @@ public class Maze {
             maze[i][n - 1] = WALL;
         }
 
-        if (mRandom.nextBoolean()) {
-            explore(maze, 1, 2);
+        explore(maze, 1, 1);
 
-            if (couldExplore(maze, 1, 1, RIGHT))
-                explore(maze, 2, 1);
-
-        } else {
-            explore(maze, 2, 1);
-            if (couldExplore(maze, 1, 1, DOWN))
-                explore(maze, 1, 2);
+        for (char[] raw : maze) {
+            for (int i = 0; i < raw.length; i++) {
+                if (raw[i] == NO_TOUCH) {
+                    raw[i] = WALL;
+                }
+            }
         }
+        maze[1][1] = START;
+
+        putTreasure(maze, n);
 
         return maze;
+    }
+
+    public static void putTreasure(char[][] maze, int n) {
+        while (true) {
+            int x = mRandom.nextInt(n - 1) + 1;
+            int y = mRandom.nextInt(n - 1) + 1;
+
+            if (maze[y][x] == EMPTY) {
+                maze[y][x] = TREASURE;
+                return;
+            }
+        }
     }
 
 
@@ -75,7 +87,7 @@ public class Maze {
         if (x < 0 || y < 0)
             return false;
 
-        if (map.length > x && map[x].length > y) {
+        if (map.length > y && map[y].length > x) {
             return true;
         }
 
@@ -84,11 +96,12 @@ public class Maze {
     }
 
     public static void explore(char[][] map, int x, int y) {
-        if (!isValidPoint(map, x, y) || map[x][y] != NO_TOUCH) {
+//        System.out.println("map = [" + map + "], x = [" + x + "], y = [" + y + "]");
+        if (!isValidPoint(map, x, y) || map[y][x] != NO_TOUCH) {
             return;
         }
 
-        map[x][y] = EMPTY;
+        map[y][x] = EMPTY;
 
         int[] order = new int[]{RIGHT, LEFT, UP, DOWN};
 
@@ -97,22 +110,22 @@ public class Maze {
         for (int d : order) {
             switch (d) {
                 case RIGHT:
-                    if (couldExplore(map, x, y, RIGHT)) {
+                    if (couldExplore(map, x + 1, y, RIGHT)) {
                         explore(map, x + 1, y);
                     }
                     break;
                 case LEFT:
-                    if (couldExplore(map, x, y, LEFT)) {
+                    if (couldExplore(map, x - 1, y, LEFT)) {
                         explore(map, x - 1, y);
                     }
                     break;
                 case UP:
-                    if (couldExplore(map, x, y, UP)) {
+                    if (couldExplore(map, x, y - 1, UP)) {
                         explore(map, x, y - 1);
                     }
                     break;
                 case DOWN:
-                    if (couldExplore(map, x, y, DOWN)) {
+                    if (couldExplore(map, x, y + 1, DOWN)) {
                         explore(map, x, y + 1);
                     }
                     break;
@@ -146,20 +159,23 @@ public class Maze {
      * 产生地图时使用，能否在指定方向继续探索
      *
      * @param map
-     * @param x
-     * @param y
-     * @param direction
-     * @return
+     * @param x         探索点 x
+     * @param y         探索点 y
+     * @param direction 探索方向
+     * @return x，y 点能否探索
      */
     public static boolean couldExplore(char[][] map, int x, int y, int direction) {
+
         char next1, next2;
 
-        next1 = peek(map, x, y, direction, 1);
-        next2 = peek(map, x, y, direction, 2);
+        next1 = peek(map, x, y, direction, 0);
+        next2 = peek(map, x, y, direction, 1);
 
         char s1 = peek(map, x, y, (direction + 1) % 4, 1);
         char s2 = peek(map, x, y, (direction + 3) % 4, 1);
-
+//        if (direction == LEFT || direction == UP) {
+////            System.out.println("map = [" + map + "], x = [" + x + "," + y + "], direction = [" + direction + "]" + next1 + "," + next2 + "," + s1 + "," + s2);
+//        }
         return next1 == NO_TOUCH && next2 != NULL && next2 != EMPTY && s1 != EMPTY && s2 != EMPTY;
     }
 
@@ -180,22 +196,22 @@ public class Maze {
 
         switch (direction) {
             case LEFT:
-                y -= distance;
-                break;
-            case RIGHT:
-                y += distance;
-                break;
-            case UP:
                 x -= distance;
                 break;
-            case DOWN:
+            case RIGHT:
                 x += distance;
+                break;
+            case UP:
+                y -= distance;
+                break;
+            case DOWN:
+                y += distance;
                 break;
 
         }
 
-        if (map.length > x && x > 0 && map[x].length > y && y > 0) {
-            p = map[x][y];
+        if (map.length > y && y >= 0 && map[y].length > x && x >= 0) {
+            p = map[y][x];
         }
 
 
@@ -223,10 +239,59 @@ public class Maze {
     }
 
     public static void main(String[] args) {
-        char[][] chars = generateMaze(10);
+        int n = 15;
+
+        System.out.println("n = " + n + " \n");
+
+        char[][] maze = generateMaze(n);
 
 
-        printMap(chars);
+        printMap(maze);
+
+        findTreasure(maze, 1, 1);
+
+        maze[1][1] = START;
+
+        printMap(maze);
+
+    }
+
+    /**
+     * 寻找宝藏
+     *
+     * @param maze 迷宫
+     * @param x    开始位置 x
+     * @param y    开始位置 y
+     * @return 是否找到宝藏
+     */
+    public static boolean findTreasure(char[][] maze, int x, int y) {
+        if (maze.length - 1 <= y || y < 1 || x < 1 || maze[y].length - 1 <= x) {
+            return false;
+        }
+
+
+        char current = maze[y][x];
+
+        if (current == TREASURE) {
+            return true;
+        } else if (current == EMPTY || current == START) {
+
+            maze[y][x] = PATH;
+            if (findTreasure(maze, x - 1, y)) {
+                return true;
+            } else if (findTreasure(maze, x + 1, y)) {
+                return true;
+            } else if (findTreasure(maze, x, y - 1)) {
+                return true;
+            } else if (findTreasure(maze, x, y + 1)) {
+                return true;
+            } else {
+                maze[y][x] = EMPTY;
+                return false;
+            }
+        }
+        return false;
+
 
     }
 }
