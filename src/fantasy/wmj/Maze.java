@@ -71,6 +71,12 @@ public class Maze {
         return maze;
     }
 
+    /**
+     * 放置 宝藏
+     *
+     * @param maze
+     * @param n
+     */
     public static void putTreasure(char[][] maze, int n) {
         while (true) {
             int x = mRandom.nextInt(n - 1) + 1;
@@ -84,6 +90,14 @@ public class Maze {
     }
 
 
+    /**
+     * 当前点是否可用
+     *
+     * @param map
+     * @param x
+     * @param y
+     * @return
+     */
     public static boolean isValidPoint(char[][] map, int x, int y) {
         if (x < 0 || y < 0)
             return false;
@@ -96,6 +110,13 @@ public class Maze {
         return false;
     }
 
+    /**
+     * dfs 搜索可以成为路的方格
+     *
+     * @param map 迷宫
+     * @param x   开始位置 x
+     * @param y   开始位置 y
+     */
     public static void explore(char[][] map, int x, int y) {
 //        System.out.println("map = [" + map + "], x = [" + x + "], y = [" + y + "]");
         if (!isValidPoint(map, x, y) || map[y][x] != NO_TOUCH) {
