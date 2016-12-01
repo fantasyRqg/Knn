@@ -52,6 +52,7 @@ public class Maze {
             maze[i][n - 1] = WALL;
         }
 
+        //生成maze
         explore(maze, 1, 1);
 
         for (char[] raw : maze) {
@@ -61,8 +62,10 @@ public class Maze {
                 }
             }
         }
+        //设置开始位置
         maze[1][1] = START;
 
+        //放置宝藏
         putTreasure(maze, n);
 
         return maze;
